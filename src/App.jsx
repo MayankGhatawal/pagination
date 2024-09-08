@@ -20,7 +20,14 @@ function App() {
       <h1>Product Titles</h1>
       <ul>
         {products.map((product) => (
-          <li key={product.id}>{product.title}</li>
+          <li key={product.id} style={{ listStyle: 'none', marginBottom: '20px' }}>
+          <img 
+            src={product.image} 
+            alt={product.title} 
+            style={{ width: '150px', height: '150px' }} // Display product image
+          />
+          <h2>{product.title}</h2> {/* Display product title */}
+        </li>
         ))}
       </ul>
     </div>
