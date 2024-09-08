@@ -7,8 +7,10 @@ function App() {
   const fetchproducts = async () => {
     const res = await fetch('https://fakestoreapi.com/products');
     const data = res.json();
-
+    
+    if(data && data.products){
     setProducts(data.products);
+  }
   };
 
   useEffect(() => {
