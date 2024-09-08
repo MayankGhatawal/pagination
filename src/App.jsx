@@ -5,12 +5,10 @@ function App() {
   const [products, setProducts] = useState([]);
 
   const fetchproducts = async () => {
-    const res = await fetch('https://fakestoreapi.com/products');
-    const data = res.json();
-    
-    if(data && data.products){
-    setProducts(data.products);
-  }
+    fetch('https://fakestoreapi.com/products')
+      .then((response) => response.json())
+      .then((data) => setProducts(data))
+      .catch((error) => console.error('Error fetching data:', error));
   };
 
   useEffect(() => {
@@ -18,7 +16,14 @@ function App() {
   }, []);
   return (
     <>
-      <div className="main"></div>
+      <div>
+      <h1>Product Titles</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>{product.title}</li>
+        ))}
+      </ul>
+    </div>
     </>
   )
 }
