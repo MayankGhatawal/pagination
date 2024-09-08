@@ -16,7 +16,7 @@ function App() {
   }, []);
   return (
     <>
-      <div>
+      <div className='products'>
       <h1>Product Titles</h1>
       <ul>
         {products.map((product) => (
@@ -24,9 +24,9 @@ function App() {
           <img 
             src={product.image} 
             alt={product.title} 
-            style={{ width: '150px', height: '150px' }} // Display product image
+            style={{ width: '200px', height: '200px' }}
           />
-          <h2>{product.title}</h2> {/* Display product title */}
+          <h4>{product.title}</h4>
         </li>
         ))}
       </ul>
