@@ -6,7 +6,7 @@ function App() {
   const [page, setPage] = useState(1);
 
   const fetchproducts = async () => {
-    fetch('https://fakestoreapi.com/products')
+    fetch('https://fakestoreapi.com/products?limit=100')
       .then((response) => response.json())
       .then((data) => setProducts(data))
       .catch((error) => console.error('Error fetching data:', error));
@@ -15,12 +15,16 @@ function App() {
   useEffect(() => {
     fetchproducts();
   }, []);
+
+  const selectPageHandler = (selectedPage) => {
+    setPage(selectedPage);
+  }
   return <>
    <div className='products'>
     {
-      products.slice(page * 10 - 10, page * 10).map((product) => (
+      products.slice(page * 8 - 8, page * 8).map((product) => (
         <div key={product.id}>
-          {/* <p>{product.title}</p> */}
+          <p>{product.category}</p>
           <img src={product.image} alt={product.title} />
           <p>Price: ${product.price}</p>
         </div>
@@ -30,13 +34,15 @@ function App() {
   <div>
     {
       products.length > 0 && <div className='pagination'>
-        <span>◀️</span>
+        <span onClick={()=>selectPageHandler(page - 1)}>◀️</span>
         {
           [...Array(products.length / 10)].map((_, i)=>{
-              return <span key={products.id}>{i + 1}</span>;
+              return <span
+              className={page===i+1 ? "pagination__selected" : ""}
+               onClick={()=>selectPageHandler(i + 1)} key={i}>{i + 1}</span>;
           })
         }
-        <span>▶️</span>
+        <span onClick={()=>selectPageHandler(page + 1)}>▶️</span>
       </div>
     }
   </div>
