@@ -27,9 +27,18 @@ function App() {
       ))
     }
   </div>
-  <div className="high">
-    <span>◀️</span>
-    <span>▶️</span>
+  <div>
+    {
+      products.length > 0 && <div className='pagination'>
+        <span>◀️</span>
+        {
+          [...Array(products.length / 10)].map((_, i)=>{
+              return <span key={products.id}>{i + 1}</span>;
+          })
+        }
+        <span>▶️</span>
+      </div>
+    }
   </div>
   </>
 }
