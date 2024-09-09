@@ -1,15 +1,19 @@
-.products{
-    margin: 20px;
+*{
+    margin: 0;
     padding: 0;
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
+    box-sizing: none;
+    font-family: Arial, sans-serif;
+}
+.products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 40px;
+    gap: 80px;
 }
 
-.products > img{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-
-
+.products img {
+    width: 100px;
+    height: 100px;
 }
