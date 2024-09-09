@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
 
   const fetchproducts = async () => {
     fetch('https://fakestoreapi.com/products')
@@ -14,25 +15,23 @@ function App() {
   useEffect(() => {
     fetchproducts();
   }, []);
-  return (
-    <>
-      <div className='products'>
-      <h1>Product Titles</h1>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id} style={{ listStyle: 'none', marginBottom: '20px' }}>
-          <img 
-            src={product.image} 
-            alt={product.title} 
-            style={{ width: '200px', height: '200px' }}
-          />
-          <h4>{product.title}</h4>
-        </li>
-        ))}
-      </ul>
-    </div>
-    </>
-  )
+  return <>
+   <div className='products'>
+    {
+      products.slice(page * 10 - 10, page * 10).map((product) => (
+        <div key={product.id}>
+          {/* <p>{product.title}</p> */}
+          <img src={product.image} alt={product.title} />
+          <p>Price: ${product.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <div className="high">
+    <span>◀️</span>
+    <span>▶️</span>
+  </div>
+  </>
 }
 
 export default App
