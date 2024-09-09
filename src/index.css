@@ -17,3 +17,21 @@
     width: 100px;
     height: 100px;
 }
+
+.pagination {
+        padding: 10px;
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+    /* margin-top: 60px; */
+    /* padding: 10px; */
+    /* margin: 15px 0; */
+    /* display: flex;
+    justify-content: center; */
+}
+
+.pagination span{
+    padding: 15px 20px;
+    border: 1px solid gray;
+    cursor: pointer;
+}
