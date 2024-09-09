@@ -26,7 +26,7 @@ function App() {
         <div key={product.id}>
           <p>{product.category}</p>
           <img src={product.image} alt={product.title} />
-          <p>Price: ${product.price}</p>
+          <p>Price: 💵{product.price}</p>
         </div>
       ))
     }
