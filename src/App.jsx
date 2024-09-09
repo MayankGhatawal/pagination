@@ -17,12 +17,14 @@ function App() {
   }, []);
 
   const selectPageHandler = (selectedPage) => {
-    setPage(selectedPage);
+    if (selectedPage >= 1 && selectedPage <= products.length / 10 && selectedPage !== page) {
+      setPage(selectedPage)
+    }
   }
   return <>
    <div className='products'>
     {
-      products.slice(page * 8 - 8, page * 8).map((product) => (
+      products.slice(page * 10 - 10, page * 10).map((product) => (
         <div key={product.id}>
           <p>{product.category}</p>
           <img src={product.image} alt={product.title} />
@@ -34,7 +36,7 @@ function App() {
   <div>
     {
       products.length > 0 && <div className='pagination'>
-        <span onClick={()=>selectPageHandler(page - 1)}>◀️</span>
+        <span onClick={()=>selectPageHandler(page - 1)} className={page > 1 ? "" : "pagination__disable"}>◀️</span>
         {
           [...Array(products.length / 10)].map((_, i)=>{
               return <span
@@ -42,7 +44,7 @@ function App() {
                onClick={()=>selectPageHandler(i + 1)} key={i}>{i + 1}</span>;
           })
         }
-        <span onClick={()=>selectPageHandler(page + 1)}>▶️</span>
+        <span onClick={()=>selectPageHandler(page + 1)} className={page < products.length / 10 ? "" : "pagination__disable"}>▶️</span>
       </div>
     }
   </div>
